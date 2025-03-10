@@ -79,100 +79,100 @@ The main features of LPC2148 include the following.
 
 
 ## STM 32 CUBE PROGRAM :
-```C 
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-
-int main(void)
-{
- 
-  HAL_Init();
-  SystemClock_Config();
-  MX_GPIO_Init();
-  
-  while (1)
-  {
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	  HAL_Delay(9000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	  HAL_Delay(9000);/* USER CODE END WHILE */
-
-  }
-}
-
-void SystemClock_Config(void)
-{
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
-  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
- 
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
-   {
-    Error_Handler();
-  }
-}
-
-
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-
-  GPIO_InitStruct.Pin = GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-}
-
-void Error_Handler(void)
-{
-  
-  __disable_irq();
-  while (1)
-  {
-  }
-}
-
-#ifdef  USE_FULL_ASSERT
-
-void assert_failed(uint8_t *file, uint32_t line)
-{
- 
-}
-#endif
+## ADDITION OF 8 BIT ALP:
 ```
+MOV AL,74H
+MOV BL,69H
+ADD AL,BL
+HLT
+```
+## OUTPUT:
+![Screenshot 2025-02-28 083119](https://github.com/user-attachments/assets/3d4f0f07-fb87-4e32-bb8d-c3d5d2dbace3)
+
+## SUBTRACTION OF 8 BIT ALP:
+```
+MOV AL,74H
+MOV BL,69H
+SUB AL,BL
+HLT
+```
+## OUTPUT:
+![Screenshot 2025-02-28 083443](https://github.com/user-attachments/assets/59fb8c36-1920-4378-9611-083d2f1f4f08)
+
+## MULTIPLICATION OF 8 BIT ALP:
+```
+org 100h
+MOV AL,75H
+MOV BL,32H
+MUL BL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 084501](https://github.com/user-attachments/assets/47c0e819-6ca6-4ca0-96fa-a67fbc489dc0)
+
+## DIVISION OF 8 BIT ALP:
+```
+org 100h
+MOV AL,70H
+MOV BL,10H
+DIV BL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 085310](https://github.com/user-attachments/assets/9d192f60-580f-4e2e-b364-a9a5ea16c975)
+
+## AND GATE OF 8 BIT ALP:
+```
+org 100h
+MOV AL,33H
+MOV BL,44H
+AND AL,BL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 085449](https://github.com/user-attachments/assets/2102ce1d-68f8-4a62-bf5b-0d8854dc211a)
 
 
-## Output  :
-![1](https://github.com/charumathiramesh/Experiment-01-INTERFACING-DIGITAL-OUTPUT-FOR-ARM-DEVELOPMENT-BOARD-/assets/120204455/88d1c808-4f0f-4355-93ce-be5d9db46b3b)
+## OR GATE OF 8 BIT ALP:
+```
+org 100h
+MOV AL,33H
+MOV BL,44H
+OR AL,BL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 085953](https://github.com/user-attachments/assets/a83f45b0-01dc-4de5-b4d0-01f8b4b59371)
 
-![2](https://github.com/charumathiramesh/Experiment-01-INTERFACING-DIGITAL-OUTPUT-FOR-ARM-DEVELOPMENT-BOARD-/assets/120204455/820760b1-7bc9-4c2c-bd1b-0e33bd70092e)
 
- 
- 
- 
+## NOT GATE OF 8 BIT ALP:
+```
+org 100h
+MOV AL,65H
+NOT AL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 090356](https://github.com/user-attachments/assets/042fe44d-6ba6-4cd3-ad1b-fc038502d2ec)
+
+
+## XOR GATE OF 8 BIT ALP:
+```
+org 100h
+MOV AL,66H
+MOV BL,77H
+XOR AL,BL
+HLT
+ret
+```
+## OUTPUT:
+![Screenshot 2025-02-28 091023](https://github.com/user-attachments/assets/e4d10e74-fa8b-49bf-ae28-2a96952ce952)
+
 ## Result :
 Interfacing a digital output with ARM microcontroller is executed and the results are verified.
 
