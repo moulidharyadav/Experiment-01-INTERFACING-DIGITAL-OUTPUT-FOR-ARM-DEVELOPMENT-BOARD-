@@ -77,7 +77,6 @@ The main features of LPC2148 include the following.
 
 
 
-
 ## STM 32 CUBE PROGRAM :
 ## ADDITION OF 8 BIT ALP:
 ```
