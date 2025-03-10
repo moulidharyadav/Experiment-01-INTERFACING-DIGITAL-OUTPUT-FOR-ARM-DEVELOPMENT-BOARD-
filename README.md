@@ -30,7 +30,6 @@ The main features of LPC2148 include the following.
 •	The modes for power-conserving mainly comprise idle & power down.
 •	For extra power optimization, there are individual enable or disable of peripheral functions and peripheral CLK scaling.
  
- 
 
 ## Procedure:
  1. click on STM 32 CUBE IDE, the following screen will appear 
@@ -61,7 +60,7 @@ The main features of LPC2148 include the following.
 8. edit the program and as per required 
 ![image](https://user-images.githubusercontent.com/36288975/226189461-a573e62f-a109-4631-a250-a20925758fe0.png)
 
-9. use project and build all 
+9. use project and build all
 ![image](https://user-images.githubusercontent.com/36288975/226189554-3f7101ac-3f41-48fc-abc7-480bd6218dec.png)
 10. once the project is bulild link the hexfile build in stm32cube ide using post processor build 
 ![image](https://user-images.githubusercontent.com/36288975/226189577-c61cc1eb-3990-4968-8aa6-aefffc766b70.png)
